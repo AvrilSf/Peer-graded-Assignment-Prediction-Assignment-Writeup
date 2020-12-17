@@ -58,16 +58,16 @@ decisionTreePrediction <- predict(decisionTreeModel, testingDataSet, type = "cla
 # Plot Decision Tree
 rpart.plot(decisionTreeModel, main = "Decision Tree", under = T, faclen = 0)
 # Using confusion matrix to test results
-confusionMatrix(decisionTreePrediction, testingDataSet$classe)
+confusionMatrix(decisionTreePrediction, factor(testingDataSet$classe))
 ```
 
 
 ## Prediction model 2 - random forest
 
 ```{r random forest}
-randomForestModel <- randomForest(classe ~. , data = trainingDataSet, method = "class")
+randomForestModel <- randomForest(factor(classe) ~. , data = trainingDataSet, method = "class")
 randomForestPrediction <- predict(randomForestModel, testingDataSet, type = "class")
-confusionMatrix(randomForestPrediction, testingDataSet$classe)
+confusionMatrix(randomForestPrediction, factor(testingDataSet$classe))
 ```
 
 
